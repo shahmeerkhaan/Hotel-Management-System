@@ -1,0 +1,86 @@
+﻿@model Hotel_Management_System.Models.Employee
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script>
+    function reloadIt() {
+        if (window.location.href.substr(-2) !== "?r") {
+            window.location = window.location.href + "?r";
+        }
+    }
+    setTimeout('reloadIt()', 1000)();
+</script>
+@using (Html.BeginForm("Login", "Home", FormMethod.Post))
+{
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <center>
+                                    <img style="width: 150px;" src="~/Content/images/writer.png" />
+                                    <h3>LOGIN</h3>
+                                </center>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <hr>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(model => model.Username, new { @class = "form-control", placeholder = "Username" })
+                                    <br />
+                                    @Html.PasswordFor(model => model.Password, new { @class = "form-control", placeholder = "UserPassword" })
+                                </div>
+                                @ViewBag.Errormsg
+                                <br />
+                                <div class="form-group">
+                                    <center>
+                                        <button class="btn btn-lg btn-success btn-block" style="width: 280px;" type="submit">
+                                            Login
+                                        </button>
+                                    </center>
+                                </div>
+                                <br />
+                                <div class="form-group">
+                                    <center>
+                                        @Html.ActionLink("Sign-Up", "Create", "Customers", new { @area = "" }, new { @class = "btn btn-lg btn-secondary btn-block", @style = "width: 280px;" })
+                                    </center>
+                                </div>
+                                <br />
+                                @if(GlobalVariables.SurfingMode == false)
+                                {
+                                    <div class="form-group">
+                                        <center>
+                                            @Html.ActionLink("Guest", "Guest", "Home", new { @area = "" }, new { @class = "btn btn-lg btn-primary btn-block", @style = "width: 280px;" })
+                                        </center>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a href="Index"><b><u><< Back to Home</u></b></a>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+            </div>
+        </div>
+    </div>
+}
+@if (GlobalVariables.SurfingMode != false)
+{
+    @Html.Raw(ViewData["GuestAlert"])
+}

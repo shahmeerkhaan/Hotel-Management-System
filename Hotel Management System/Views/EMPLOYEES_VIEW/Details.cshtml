@@ -1,0 +1,89 @@
+﻿@model Hotel_Management_System.Models.EMPLOYEES_VIEW
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string ActionName = GlobalVariables.VIEWSHANDLER().ToString();
+}
+
+<br />
+<div class="container">
+    <div class="row">
+        @*<p>
+            @Html.ActionLink("Logout", "Logout", "Home", new { area = "" }, new { @class = "btn btn-danger mr-1" })
+        </p>*@
+        <h4>
+            EMPLOYEES_VIEW
+        </h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Employee_First_name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Employee_First_name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Employee_Last_name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Employee_Last_name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Username)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Username)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Password)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Password)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Employee_Department)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Employee_Department)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Employee_Address)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Employee_Address)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Employee_Salary)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Employee_Salary)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Employee_Contact_No_s)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Employee_Contact_No_s)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Back to List", ActionName, new { area = "" }, new { @class = "btn btn-primary" })
+    </p>
+</div>

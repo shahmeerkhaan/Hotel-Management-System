@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Contact Us";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    input[type=text], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+</style>
+<script>
+    function Message() {
+        alert("Thank you for reaching us out!!!!.");
+    }
+    function reloadIt() {
+        if (window.location.href.substr(-2) !== "?r") {
+            window.location = window.location.href + "?r";
+        }
+    }
+    setTimeout('reloadIt()', 1000)();
+</script>
+<header class="text-white" style="--bs-bg-opacity: 1; background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;">
+    <div class="container px-4 text-center">
+        <h1>@ViewBag.Title</h1>
+        <h3>By sending us the message from below.</h3>
+    </div>
+</header>
+<br />
+<div class="container">
+    <label for="fname">Your Name</label>
+    <input type="text" id="Name" name="Your Name" placeholder="Your Name..">
+
+    <label for="lname">Your Email</label>
+    <input type="text" id="Email" name="Your Email" placeholder="Your Email..">
+
+    <label for="subject">Your Concern</label>
+    <textarea id="subject" name="Concern" placeholder="Write something.." style="height:200px"></textarea>
+
+
+    <input class="btn btn-success btn-block btn-lg" id="myBtn" type="button" value="SUBMIT" onclick="Message();" />
+</div>

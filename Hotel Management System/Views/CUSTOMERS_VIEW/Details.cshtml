@@ -1,0 +1,80 @@
+﻿@model Hotel_Management_System.Models.CUSTOMERS_VIEW
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string ActionName = GlobalVariables.VIEWSHANDLER().ToString();
+}
+
+<br />
+<div class="container">
+    <div class="row">
+        @*<p>
+            @Html.ActionLink("Logout", "Logout", "Home", new { area = "" }, new { @class = "btn btn-danger mr-1" })
+        </p>*@
+        <h4>
+            CUSTOMERS_VIEW
+        </h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Customer_First_name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Customer_First_name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Customer_Last_name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Customer_Last_name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Customer_Address)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Customer_Address)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.No__of_Peoples)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.No__of_Peoples)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Customer_Phone_No_s)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Customer_Phone_No_s)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Username)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Username)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Password)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Password)
+            </dd>
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Back to List", ActionName, new { area = "" }, new { @class = "btn btn-primary" })
+    </p>
+</div>

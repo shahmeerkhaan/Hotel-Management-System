@@ -1,0 +1,55 @@
+﻿@model Hotel_Management_System.Models.Employees_Contact_No_s
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string ActionName = GlobalVariables.VIEWSHANDLER().ToString();
+}
+
+<br />
+<div class="container">
+    <div class="row">
+        @*<p>
+            @Html.ActionLink("Logout", "Logout", "Home", new { area = "" }, new { @class = "btn btn-danger mr-1" })
+        </p>*@
+        <h4>
+            Employees_Contact_No_s
+        </h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Employee_Contact_No_s)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Employee_Contact_No_s)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Employee.Employee_First_Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Employee.Employee_First_Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Employee1.Employee_First_Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Employee1.Employee_First_Name)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ECID }, new { @class = "btn btn-warning" })
+        <br />
+        <br />
+        @Html.ActionLink("Back to List", ActionName, new { area = "" }, new { @class = "btn btn-primary" })
+        <br />
+        <br />
+        @Html.ActionLink("Back-to-Main-Employees-List", ActionName, "EMPLOYEES_VIEW", new { area = "" }, new { @class = "btn btn-primary" })
+    </p>
+</div>

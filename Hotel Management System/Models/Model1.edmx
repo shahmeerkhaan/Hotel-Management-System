@@ -1,0 +1,1258 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="Customer ID" />
+          </Key>
+          <Property Name="Customer ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Customer First name" Type="nvarchar(max)" />
+          <Property Name="Customer Last name" Type="nvarchar(max)" />
+          <Property Name="Customer Email-Address" Type="nvarchar(max)" />
+          <Property Name="Customer Address" Type="nvarchar(max)" />
+          <Property Name="No. of Peoples" Type="int" Nullable="false" />
+          <Property Name="Username" Type="nvarchar(max)" />
+          <Property Name="Password" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Customer's Phone No_s">
+          <Key>
+            <PropertyRef Name="CPID" />
+          </Key>
+          <Property Name="CPID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Customer ID" Type="int" />
+          <Property Name="Customer Phone No.s" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="Employee ID" />
+          </Key>
+          <Property Name="Employee ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Employee First Name" Type="nvarchar(max)" />
+          <Property Name="Employee Last Name" Type="nvarchar(max)" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="Employee Department" Type="nvarchar(max)" />
+          <Property Name="Employee Address" Type="nvarchar(max)" />
+          <Property Name="Employee Salary" Type="money" />
+        </EntityType>
+        <EntityType Name="Employees Contact No_s">
+          <Key>
+            <PropertyRef Name="ECID" />
+          </Key>
+          <Property Name="ECID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Employee ID" Type="int" />
+          <Property Name="Employee Contact No.s" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Payments">
+          <Key>
+            <PropertyRef Name="Payment ID" />
+          </Key>
+          <Property Name="Payment ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Customer ID" Type="int" />
+          <Property Name="Transaction ID" Type="int" />
+          <Property Name="Amount" Type="bigint" />
+          <Property Name="Payment Date" Type="date" />
+          <Property Name="No. of Days Stay" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reservations">
+          <Key>
+            <PropertyRef Name="Reservation ID" />
+          </Key>
+          <Property Name="Reservation ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Transaction ID" Type="int" />
+          <Property Name="Customer ID" Type="int" />
+          <Property Name="Date In" Type="date" />
+          <Property Name="Date Out" Type="date" />
+          <Property Name="Days/Interval of Stay" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Reviews">
+          <Key>
+            <PropertyRef Name="RID" />
+          </Key>
+          <Property Name="RID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Customer ID-Name" Type="int" />
+          <Property Name="Review Details" Type="nvarchar(max)" />
+          <Property Name="Review Date" Type="date" />
+          <Property Name="Customer Email-Address" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Rooms">
+          <Key>
+            <PropertyRef Name="Room No" />
+          </Key>
+          <Property Name="Room No" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Room Category" Type="nvarchar(max)" />
+          <Property Name="Rent" Type="bigint" />
+          <Property Name="Reservation ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Transactions">
+          <Key>
+            <PropertyRef Name="Transaction ID" />
+          </Key>
+          <Property Name="Transaction ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Transaction Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Customer ID" Type="int" />
+          <Property Name="Employee ID" Type="int" />
+          <Property Name="Transaction Date" Type="date" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Hotel Management System.dbo.CUSTOMERS VIEW' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="CUSTOMERS VIEW">
+          <Key>
+            <PropertyRef Name="Customer ID" />
+            <PropertyRef Name="No. of Peoples" />
+          </Key>
+          <Property Name="Customer ID" Type="int" Nullable="false" />
+          <Property Name="Customer First name" Type="nvarchar(max)" />
+          <Property Name="Customer Last name" Type="nvarchar(max)" />
+          <Property Name="Customer Address" Type="nvarchar(max)" />
+          <Property Name="No. of Peoples" Type="int" Nullable="false" />
+          <Property Name="Customer Phone No.s" Type="bigint" />
+          <Property Name="Customer Email-Address" Type="nvarchar(max)" />
+          <Property Name="Username" Type="nvarchar(max)" />
+          <Property Name="Password" Type="nvarchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Hotel Management System.dbo.EMPLOYEES VIEW' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="EMPLOYEES VIEW">
+          <Key>
+            <PropertyRef Name="Employee ID" />
+          </Key>
+          <Property Name="Employee ID" Type="int" Nullable="false" />
+          <Property Name="Employee First name" Type="nvarchar(max)" />
+          <Property Name="Employee Last name" Type="nvarchar(max)" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="Employee Department" Type="nvarchar(max)" />
+          <Property Name="Employee Address" Type="nvarchar(max)" />
+          <Property Name="Employee Salary" Type="money" />
+          <Property Name="Employee Contact No.s" Type="bigint" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Hotel Management System.dbo.RESERVATIONS VIEW' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="RESERVATIONS VIEW">
+          <Key>
+            <PropertyRef Name="Room No" />
+            <PropertyRef Name="Reservation ID" />
+          </Key>
+          <Property Name="Reservation ID" Type="int" Nullable="false" />
+          <Property Name="Transaction ID" Type="int" />
+          <Property Name="Customer ID" Type="int" />
+          <Property Name="Date In" Type="date" />
+          <Property Name="Date Out" Type="date" />
+          <Property Name="Days/Interval of Stay" Type="bigint" />
+          <Property Name="Room No" Type="int" Nullable="false" />
+          <Property Name="Room Category" Type="nvarchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Hotel Management System.dbo.TRANSACTIONS VIEW' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="TRANSACTIONS VIEW">
+          <Key>
+            <PropertyRef Name="Transaction ID" />
+          </Key>
+          <Property Name="Transaction ID" Type="int" Nullable="false" />
+          <Property Name="Transaction Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Transaction Date" Type="date" />
+          <Property Name="Employee ID" Type="int" />
+          <Property Name="Customer ID" Type="int" />
+          <Property Name="Amount" Type="bigint" />
+          <Property Name="No. of Days Stay" Type="bigint" />
+        </EntityType>
+        <Association Name="CRI_FK_customer_id">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Customer's Phone No_s" Type="Self.Customer's Phone No_s" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="Customer ID" />
+            </Principal>
+            <Dependent Role="Customer's Phone No_s">
+              <PropertyRef Name="Customer ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CRI_ON_EMPLOYEECONTACTNOS_FK_EMPLOYEE_ID">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Employees Contact No_s" Type="Self.Employees Contact No_s" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Employee ID" />
+            </Principal>
+            <Dependent Role="Employees Contact No_s">
+              <PropertyRef Name="Employee ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CRI_ON_PAYMENTS_FK_CUSTOMER_ID">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="Customer ID" />
+            </Principal>
+            <Dependent Role="Payments">
+              <PropertyRef Name="Customer ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CRI_ON_RESERVATIONS_FK_CUSTOMER_ID">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="Customer ID" />
+            </Principal>
+            <Dependent Role="Reservations">
+              <PropertyRef Name="Customer ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CRI_ON_RESERVATIONS_FK_TRANSACTION_ID">
+          <End Role="Transactions" Type="Self.Transactions" Multiplicity="0..1" />
+          <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transactions">
+              <PropertyRef Name="Transaction ID" />
+            </Principal>
+            <Dependent Role="Reservations">
+              <PropertyRef Name="Transaction ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CRI_ON_REVIEWS_FK_CUSTOMER_ID">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Reviews" Type="Self.Reviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="Customer ID" />
+            </Principal>
+            <Dependent Role="Reviews">
+              <PropertyRef Name="Customer ID-Name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CRI_ON_ROOMS_FK_RESERVATION_ID">
+          <End Role="Reservations" Type="Self.Reservations" Multiplicity="0..1" />
+          <End Role="Rooms" Type="Self.Rooms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reservations">
+              <PropertyRef Name="Reservation ID" />
+            </Principal>
+            <Dependent Role="Rooms">
+              <PropertyRef Name="Reservation ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CRI_ON_TRANSACTIONS_FK_CUSTOMER_ID">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
+          <End Role="Transactions" Type="Self.Transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="Customer ID" />
+            </Principal>
+            <Dependent Role="Transactions">
+              <PropertyRef Name="Customer ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CRI_ON_TRANSACTIONS_FK_EMPLOYEE_ID">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+          <End Role="Transactions" Type="Self.Transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Employee ID" />
+            </Principal>
+            <Dependent Role="Transactions">
+              <PropertyRef Name="Employee ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Customer'__Custo__276EDEB3">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
+          <End Role="Customer's Phone No_s" Type="Self.Customer's Phone No_s" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="Customer ID" />
+            </Principal>
+            <Dependent Role="Customer's Phone No_s">
+              <PropertyRef Name="Customer ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employees__Emplo__31EC6D26">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+          <End Role="Employees Contact No_s" Type="Self.Employees Contact No_s" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Employee ID" />
+            </Principal>
+            <Dependent Role="Employees Contact No_s">
+              <PropertyRef Name="Employee ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Payments__Custom__412EB0B6">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
+          <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="Customer ID" />
+            </Principal>
+            <Dependent Role="Payments">
+              <PropertyRef Name="Customer ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Payments__Transa__4222D4EF">
+          <End Role="Transactions" Type="Self.Transactions" Multiplicity="0..1" />
+          <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transactions">
+              <PropertyRef Name="Transaction ID" />
+            </Principal>
+            <Dependent Role="Payments">
+              <PropertyRef Name="Transaction ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reservati__Custo__3A81B327">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
+          <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="Customer ID" />
+            </Principal>
+            <Dependent Role="Reservations">
+              <PropertyRef Name="Customer ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reservati__Trans__398D8EEE">
+          <End Role="Transactions" Type="Self.Transactions" Multiplicity="0..1" />
+          <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transactions">
+              <PropertyRef Name="Transaction ID" />
+            </Principal>
+            <Dependent Role="Reservations">
+              <PropertyRef Name="Transaction ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reviews__Custome__2B3F6F97">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
+          <End Role="Reviews" Type="Self.Reviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="Customer ID" />
+            </Principal>
+            <Dependent Role="Reviews">
+              <PropertyRef Name="Customer ID-Name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Rooms__Reservati__3E52440B">
+          <End Role="Reservations" Type="Self.Reservations" Multiplicity="0..1" />
+          <End Role="Rooms" Type="Self.Rooms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reservations">
+              <PropertyRef Name="Reservation ID" />
+            </Principal>
+            <Dependent Role="Rooms">
+              <PropertyRef Name="Reservation ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Transacti__Custo__35BCFE0A">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
+          <End Role="Transactions" Type="Self.Transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="Customer ID" />
+            </Principal>
+            <Dependent Role="Transactions">
+              <PropertyRef Name="Customer ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Transacti__Emplo__36B12243">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+          <End Role="Transactions" Type="Self.Transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Employee ID" />
+            </Principal>
+            <Dependent Role="Transactions">
+              <PropertyRef Name="Employee ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="sp_IOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Transaction_ID" Type="int" Mode="In" />
+          <Parameter Name="Customer_ID" Type="int" Mode="In" />
+          <Parameter Name="Date_In" Type="date" Mode="In" />
+          <Parameter Name="Date_Out" Type="date" Mode="In" />
+        </Function>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer's Phone No_s" EntityType="Self.Customer's Phone No_s" Schema="dbo" Table="Customer's Phone No.s" store:Type="Tables" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employees Contact No_s" EntityType="Self.Employees Contact No_s" Schema="dbo" Table="Employees Contact No.s" store:Type="Tables" />
+          <EntitySet Name="Payments" EntityType="Self.Payments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reservations" EntityType="Self.Reservations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reviews" EntityType="Self.Reviews" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rooms" EntityType="Self.Rooms" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transactions" EntityType="Self.Transactions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CUSTOMERS VIEW" EntityType="Self.CUSTOMERS VIEW" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [CUSTOMERS VIEW].[Customer ID] AS [Customer ID], 
+    [CUSTOMERS VIEW].[Customer First name] AS [Customer First name], 
+    [CUSTOMERS VIEW].[Customer Last name] AS [Customer Last name], 
+    [CUSTOMERS VIEW].[Customer Address] AS [Customer Address], 
+    [CUSTOMERS VIEW].[No. of Peoples] AS [No. of Peoples], 
+    [CUSTOMERS VIEW].[Customer Phone No.s] AS [Customer Phone No.s], 
+    [CUSTOMERS VIEW].[Customer Email-Address] AS [Customer Email-Address], 
+    [CUSTOMERS VIEW].[Username] AS [Username], 
+    [CUSTOMERS VIEW].[Password] AS [Password]
+    FROM [dbo].[CUSTOMERS VIEW] AS [CUSTOMERS VIEW]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="EMPLOYEES VIEW" EntityType="Self.EMPLOYEES VIEW" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [EMPLOYEES VIEW].[Employee ID] AS [Employee ID], 
+    [EMPLOYEES VIEW].[Employee First name] AS [Employee First name], 
+    [EMPLOYEES VIEW].[Employee Last name] AS [Employee Last name], 
+    [EMPLOYEES VIEW].[Username] AS [Username], 
+    [EMPLOYEES VIEW].[Password] AS [Password], 
+    [EMPLOYEES VIEW].[Employee Department] AS [Employee Department], 
+    [EMPLOYEES VIEW].[Employee Address] AS [Employee Address], 
+    [EMPLOYEES VIEW].[Employee Salary] AS [Employee Salary], 
+    [EMPLOYEES VIEW].[Employee Contact No.s] AS [Employee Contact No.s]
+    FROM [dbo].[EMPLOYEES VIEW] AS [EMPLOYEES VIEW]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="RESERVATIONS VIEW" EntityType="Self.RESERVATIONS VIEW" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [RESERVATIONS VIEW].[Reservation ID] AS [Reservation ID], 
+    [RESERVATIONS VIEW].[Transaction ID] AS [Transaction ID], 
+    [RESERVATIONS VIEW].[Customer ID] AS [Customer ID], 
+    [RESERVATIONS VIEW].[Date In] AS [Date In], 
+    [RESERVATIONS VIEW].[Date Out] AS [Date Out], 
+    [RESERVATIONS VIEW].[Days/Interval of Stay] AS [Days/Interval of Stay], 
+    [RESERVATIONS VIEW].[Room No] AS [Room No], 
+    [RESERVATIONS VIEW].[Room Category] AS [Room Category]
+    FROM [dbo].[RESERVATIONS VIEW] AS [RESERVATIONS VIEW]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="TRANSACTIONS VIEW" EntityType="Self.TRANSACTIONS VIEW" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TRANSACTIONS VIEW].[Transaction ID] AS [Transaction ID], 
+    [TRANSACTIONS VIEW].[Transaction Name] AS [Transaction Name], 
+    [TRANSACTIONS VIEW].[Transaction Date] AS [Transaction Date], 
+    [TRANSACTIONS VIEW].[Employee ID] AS [Employee ID], 
+    [TRANSACTIONS VIEW].[Customer ID] AS [Customer ID], 
+    [TRANSACTIONS VIEW].[Amount] AS [Amount], 
+    [TRANSACTIONS VIEW].[No. of Days Stay] AS [No. of Days Stay]
+    FROM [dbo].[TRANSACTIONS VIEW] AS [TRANSACTIONS VIEW]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="CRI_FK_customer_id" Association="Self.CRI_FK_customer_id">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Customer's Phone No_s" EntitySet="Customer's Phone No_s" />
+          </AssociationSet>
+          <AssociationSet Name="CRI_ON_EMPLOYEECONTACTNOS_FK_EMPLOYEE_ID" Association="Self.CRI_ON_EMPLOYEECONTACTNOS_FK_EMPLOYEE_ID">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Employees Contact No_s" EntitySet="Employees Contact No_s" />
+          </AssociationSet>
+          <AssociationSet Name="CRI_ON_PAYMENTS_FK_CUSTOMER_ID" Association="Self.CRI_ON_PAYMENTS_FK_CUSTOMER_ID">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Payments" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="CRI_ON_RESERVATIONS_FK_CUSTOMER_ID" Association="Self.CRI_ON_RESERVATIONS_FK_CUSTOMER_ID">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Reservations" EntitySet="Reservations" />
+          </AssociationSet>
+          <AssociationSet Name="CRI_ON_RESERVATIONS_FK_TRANSACTION_ID" Association="Self.CRI_ON_RESERVATIONS_FK_TRANSACTION_ID">
+            <End Role="Transactions" EntitySet="Transactions" />
+            <End Role="Reservations" EntitySet="Reservations" />
+          </AssociationSet>
+          <AssociationSet Name="CRI_ON_REVIEWS_FK_CUSTOMER_ID" Association="Self.CRI_ON_REVIEWS_FK_CUSTOMER_ID">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Reviews" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="CRI_ON_ROOMS_FK_RESERVATION_ID" Association="Self.CRI_ON_ROOMS_FK_RESERVATION_ID">
+            <End Role="Reservations" EntitySet="Reservations" />
+            <End Role="Rooms" EntitySet="Rooms" />
+          </AssociationSet>
+          <AssociationSet Name="CRI_ON_TRANSACTIONS_FK_CUSTOMER_ID" Association="Self.CRI_ON_TRANSACTIONS_FK_CUSTOMER_ID">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Transactions" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="CRI_ON_TRANSACTIONS_FK_EMPLOYEE_ID" Association="Self.CRI_ON_TRANSACTIONS_FK_EMPLOYEE_ID">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Transactions" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Customer'__Custo__276EDEB3" Association="Self.FK__Customer'__Custo__276EDEB3">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Customer's Phone No_s" EntitySet="Customer's Phone No_s" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employees__Emplo__31EC6D26" Association="Self.FK__Employees__Emplo__31EC6D26">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Employees Contact No_s" EntitySet="Employees Contact No_s" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Payments__Custom__412EB0B6" Association="Self.FK__Payments__Custom__412EB0B6">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Payments" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Payments__Transa__4222D4EF" Association="Self.FK__Payments__Transa__4222D4EF">
+            <End Role="Transactions" EntitySet="Transactions" />
+            <End Role="Payments" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reservati__Custo__3A81B327" Association="Self.FK__Reservati__Custo__3A81B327">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Reservations" EntitySet="Reservations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reservati__Trans__398D8EEE" Association="Self.FK__Reservati__Trans__398D8EEE">
+            <End Role="Transactions" EntitySet="Transactions" />
+            <End Role="Reservations" EntitySet="Reservations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reviews__Custome__2B3F6F97" Association="Self.FK__Reviews__Custome__2B3F6F97">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Reviews" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Rooms__Reservati__3E52440B" Association="Self.FK__Rooms__Reservati__3E52440B">
+            <End Role="Reservations" EntitySet="Reservations" />
+            <End Role="Rooms" EntitySet="Rooms" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Transacti__Custo__35BCFE0A" Association="Self.FK__Transacti__Custo__35BCFE0A">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Transactions" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Transacti__Emplo__36B12243" Association="Self.FK__Transacti__Emplo__36B12243">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Transactions" EntitySet="Transactions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Customer_ID" />
+          </Key>
+          <Property Name="Customer_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Customer_First_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Customer_Last_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Customer_Email_Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Customer_Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="No__of_Peoples" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Customer_s_Phone_No_s" Relationship="Self.CRI_FK_customer_id" FromRole="Customers" ToRole="Customer_s_Phone_No_s" />
+          <NavigationProperty Name="Payments" Relationship="Self.CRI_ON_PAYMENTS_FK_CUSTOMER_ID" FromRole="Customers" ToRole="Payments" />
+          <NavigationProperty Name="Reservations" Relationship="Self.CRI_ON_RESERVATIONS_FK_CUSTOMER_ID" FromRole="Customers" ToRole="Reservations" />
+          <NavigationProperty Name="Reviews" Relationship="Self.CRI_ON_REVIEWS_FK_CUSTOMER_ID" FromRole="Customers" ToRole="Reviews" />
+          <NavigationProperty Name="Transactions" Relationship="Self.CRI_ON_TRANSACTIONS_FK_CUSTOMER_ID" FromRole="Customers" ToRole="Transactions" />
+          <NavigationProperty Name="Customer_s_Phone_No_s1" Relationship="Self.FK__Customer___Custo__276EDEB3" FromRole="Customers" ToRole="Customer_s_Phone_No_s" />
+          <NavigationProperty Name="Payments1" Relationship="Self.FK__Payments__Custom__412EB0B6" FromRole="Customers" ToRole="Payments" />
+          <NavigationProperty Name="Reservations1" Relationship="Self.FK__Reservati__Custo__3A81B327" FromRole="Customers" ToRole="Reservations" />
+          <NavigationProperty Name="Reviews1" Relationship="Self.FK__Reviews__Custome__2B3F6F97" FromRole="Customers" ToRole="Reviews" />
+          <NavigationProperty Name="Transactions1" Relationship="Self.FK__Transacti__Custo__35BCFE0A" FromRole="Customers" ToRole="Transactions" />
+          <Property Name="Username" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Customer_s_Phone_No_s">
+          <Key>
+            <PropertyRef Name="CPID" />
+          </Key>
+          <Property Name="CPID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Customer_ID" Type="Int32" />
+          <Property Name="Customer_Phone_No_s" Type="Int64" />
+          <NavigationProperty Name="Customer" Relationship="Self.CRI_FK_customer_id" FromRole="Customer_s_Phone_No_s" ToRole="Customers" />
+          <NavigationProperty Name="Customer1" Relationship="Self.FK__Customer___Custo__276EDEB3" FromRole="Customer_s_Phone_No_s" ToRole="Customers" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Employee_ID" />
+          </Key>
+          <Property Name="Employee_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Employee_First_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Employee_Last_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Employee_Department" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Employee_Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Employee_Salary" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="Employees_Contact_No_s" Relationship="Self.CRI_ON_EMPLOYEECONTACTNOS_FK_EMPLOYEE_ID" FromRole="Employees" ToRole="Employees_Contact_No_s" />
+          <NavigationProperty Name="Transactions" Relationship="Self.CRI_ON_TRANSACTIONS_FK_EMPLOYEE_ID" FromRole="Employees" ToRole="Transactions" />
+          <NavigationProperty Name="Employees_Contact_No_s1" Relationship="Self.FK__Employees__Emplo__31EC6D26" FromRole="Employees" ToRole="Employees_Contact_No_s" />
+          <NavigationProperty Name="Transactions1" Relationship="Self.FK__Transacti__Emplo__36B12243" FromRole="Employees" ToRole="Transactions" />
+        </EntityType>
+        <EntityType Name="Employees_Contact_No_s">
+          <Key>
+            <PropertyRef Name="ECID" />
+          </Key>
+          <Property Name="ECID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Employee_ID" Type="Int32" />
+          <Property Name="Employee_Contact_No_s" Type="Int64" />
+          <NavigationProperty Name="Employee" Relationship="Self.CRI_ON_EMPLOYEECONTACTNOS_FK_EMPLOYEE_ID" FromRole="Employees_Contact_No_s" ToRole="Employees" />
+          <NavigationProperty Name="Employee1" Relationship="Self.FK__Employees__Emplo__31EC6D26" FromRole="Employees_Contact_No_s" ToRole="Employees" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="Payment_ID" />
+          </Key>
+          <Property Name="Payment_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Customer_ID" Type="Int32" />
+          <Property Name="Transaction_ID" Type="Int32" />
+          <Property Name="Amount" Type="Int64" />
+          <Property Name="Payment_Date" Type="DateTime" Precision="0" />
+          <Property Name="No__of_Days_Stay" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="Self.CRI_ON_PAYMENTS_FK_CUSTOMER_ID" FromRole="Payments" ToRole="Customers" />
+          <NavigationProperty Name="Customer1" Relationship="Self.FK__Payments__Custom__412EB0B6" FromRole="Payments" ToRole="Customers" />
+          <NavigationProperty Name="Transaction" Relationship="Self.FK__Payments__Transa__4222D4EF" FromRole="Payments" ToRole="Transactions" />
+        </EntityType>
+        <EntityType Name="Reservation">
+          <Key>
+            <PropertyRef Name="Reservation_ID" />
+          </Key>
+          <Property Name="Reservation_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Transaction_ID" Type="Int32" />
+          <Property Name="Customer_ID" Type="Int32" />
+          <Property Name="Date_In" Type="DateTime" Precision="0" />
+          <Property Name="Date_Out" Type="DateTime" Precision="0" />
+          <Property Name="Days_Interval_of_Stay" Type="Int64" />
+          <NavigationProperty Name="Customer" Relationship="Self.CRI_ON_RESERVATIONS_FK_CUSTOMER_ID" FromRole="Reservations" ToRole="Customers" />
+          <NavigationProperty Name="Customer1" Relationship="Self.FK__Reservati__Custo__3A81B327" FromRole="Reservations" ToRole="Customers" />
+          <NavigationProperty Name="Transaction" Relationship="Self.CRI_ON_RESERVATIONS_FK_TRANSACTION_ID" FromRole="Reservations" ToRole="Transactions" />
+          <NavigationProperty Name="Rooms" Relationship="Self.CRI_ON_ROOMS_FK_RESERVATION_ID" FromRole="Reservations" ToRole="Rooms" />
+          <NavigationProperty Name="Transaction1" Relationship="Self.FK__Reservati__Trans__398D8EEE" FromRole="Reservations" ToRole="Transactions" />
+          <NavigationProperty Name="Rooms1" Relationship="Self.FK__Rooms__Reservati__3E52440B" FromRole="Reservations" ToRole="Rooms" />
+        </EntityType>
+        <EntityType Name="Review">
+          <Key>
+            <PropertyRef Name="RID" />
+          </Key>
+          <Property Name="RID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Customer_ID_Name" Type="Int32" />
+          <Property Name="Review_Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Review_Date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Customer" Relationship="Self.CRI_ON_REVIEWS_FK_CUSTOMER_ID" FromRole="Reviews" ToRole="Customers" />
+          <NavigationProperty Name="Customer1" Relationship="Self.FK__Reviews__Custome__2B3F6F97" FromRole="Reviews" ToRole="Customers" />
+          <Property Name="Customer_Email_Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="Room_No" />
+          </Key>
+          <Property Name="Room_No" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Room_Category" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Rent" Type="Int64" />
+          <Property Name="Reservation_ID" Type="Int32" />
+          <NavigationProperty Name="Reservation" Relationship="Self.CRI_ON_ROOMS_FK_RESERVATION_ID" FromRole="Rooms" ToRole="Reservations" />
+          <NavigationProperty Name="Reservation1" Relationship="Self.FK__Rooms__Reservati__3E52440B" FromRole="Rooms" ToRole="Reservations" />
+        </EntityType>
+        <EntityType Name="Transaction">
+          <Key>
+            <PropertyRef Name="Transaction_ID" />
+          </Key>
+          <Property Name="Transaction_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Transaction_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Customer_ID" Type="Int32" />
+          <Property Name="Employee_ID" Type="Int32" />
+          <Property Name="Transaction_Date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Customer" Relationship="Self.CRI_ON_TRANSACTIONS_FK_CUSTOMER_ID" FromRole="Transactions" ToRole="Customers" />
+          <NavigationProperty Name="Customer1" Relationship="Self.FK__Transacti__Custo__35BCFE0A" FromRole="Transactions" ToRole="Customers" />
+          <NavigationProperty Name="Employee" Relationship="Self.CRI_ON_TRANSACTIONS_FK_EMPLOYEE_ID" FromRole="Transactions" ToRole="Employees" />
+          <NavigationProperty Name="Employee1" Relationship="Self.FK__Transacti__Emplo__36B12243" FromRole="Transactions" ToRole="Employees" />
+          <NavigationProperty Name="Payments" Relationship="Self.FK__Payments__Transa__4222D4EF" FromRole="Transactions" ToRole="Payments" />
+          <NavigationProperty Name="Reservations" Relationship="Self.CRI_ON_RESERVATIONS_FK_TRANSACTION_ID" FromRole="Transactions" ToRole="Reservations" />
+          <NavigationProperty Name="Reservations1" Relationship="Self.FK__Reservati__Trans__398D8EEE" FromRole="Transactions" ToRole="Reservations" />
+        </EntityType>
+        <EntityType Name="CUSTOMERS_VIEW">
+          <Key>
+            <PropertyRef Name="No__of_Peoples" />
+            <PropertyRef Name="Customer_ID" />
+          </Key>
+          <Property Name="Customer_ID" Type="Int32" Nullable="false" />
+          <Property Name="Customer_First_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Customer_Last_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Customer_Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="No__of_Peoples" Type="Int32" Nullable="false" />
+          <Property Name="Customer_Phone_No_s" Type="Int64" />
+          <Property Name="Customer_Email_Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Username" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="EMPLOYEES_VIEW">
+          <Key>
+            <PropertyRef Name="Employee_ID" />
+          </Key>
+          <Property Name="Employee_ID" Type="Int32" Nullable="false" />
+          <Property Name="Employee_First_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Employee_Last_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Employee_Department" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Employee_Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Employee_Salary" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Employee_Contact_No_s" Type="Int64" />
+        </EntityType>
+        <EntityType Name="RESERVATIONS_VIEW">
+          <Key>
+            <PropertyRef Name="Room_No" />
+            <PropertyRef Name="Reservation_ID" />
+          </Key>
+          <Property Name="Reservation_ID" Type="Int32" Nullable="false" />
+          <Property Name="Transaction_ID" Type="Int32" />
+          <Property Name="Customer_ID" Type="Int32" />
+          <Property Name="Date_In" Type="DateTime" Precision="0" />
+          <Property Name="Date_Out" Type="DateTime" Precision="0" />
+          <Property Name="Days_Interval_of_Stay" Type="Int64" />
+          <Property Name="Room_No" Type="Int32" Nullable="false" />
+          <Property Name="Room_Category" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TRANSACTIONS_VIEW">
+          <Key>
+            <PropertyRef Name="Transaction_ID" />
+          </Key>
+          <Property Name="Transaction_ID" Type="Int32" Nullable="false" />
+          <Property Name="Transaction_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Transaction_Date" Type="DateTime" Precision="0" />
+          <Property Name="Employee_ID" Type="Int32" />
+          <Property Name="Customer_ID" Type="Int32" />
+          <Property Name="Amount" Type="Int64" />
+          <Property Name="No__of_Days_Stay" Type="Int64" />
+        </EntityType>
+        <Association Name="CRI_FK_customer_id">
+          <End Role="Customers" Type="Self.Customer" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Customer_s_Phone_No_s" Type="Self.Customer_s_Phone_No_s" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="Customer_ID" />
+            </Principal>
+            <Dependent Role="Customer_s_Phone_No_s">
+              <PropertyRef Name="Customer_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CRI_ON_PAYMENTS_FK_CUSTOMER_ID">
+          <End Role="Customers" Type="Self.Customer" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Payments" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="Customer_ID" />
+            </Principal>
+            <Dependent Role="Payments">
+              <PropertyRef Name="Customer_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CRI_ON_RESERVATIONS_FK_CUSTOMER_ID">
+          <End Role="Customers" Type="Self.Customer" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Reservations" Type="Self.Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="Customer_ID" />
+            </Principal>
+            <Dependent Role="Reservations">
+              <PropertyRef Name="Customer_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CRI_ON_REVIEWS_FK_CUSTOMER_ID">
+          <End Role="Customers" Type="Self.Customer" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Reviews" Type="Self.Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="Customer_ID" />
+            </Principal>
+            <Dependent Role="Reviews">
+              <PropertyRef Name="Customer_ID_Name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CRI_ON_TRANSACTIONS_FK_CUSTOMER_ID">
+          <End Role="Customers" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Transactions" Type="Self.Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="Customer_ID" />
+            </Principal>
+            <Dependent Role="Transactions">
+              <PropertyRef Name="Customer_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Customer___Custo__276EDEB3">
+          <End Role="Customers" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Customer_s_Phone_No_s" Type="Self.Customer_s_Phone_No_s" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="Customer_ID" />
+            </Principal>
+            <Dependent Role="Customer_s_Phone_No_s">
+              <PropertyRef Name="Customer_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Payments__Custom__412EB0B6">
+          <End Role="Customers" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Payments" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="Customer_ID" />
+            </Principal>
+            <Dependent Role="Payments">
+              <PropertyRef Name="Customer_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reservati__Custo__3A81B327">
+          <End Role="Customers" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Reservations" Type="Self.Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="Customer_ID" />
+            </Principal>
+            <Dependent Role="Reservations">
+              <PropertyRef Name="Customer_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reviews__Custome__2B3F6F97">
+          <End Role="Customers" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Reviews" Type="Self.Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="Customer_ID" />
+            </Principal>
+            <Dependent Role="Reviews">
+              <PropertyRef Name="Customer_ID_Name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Transacti__Custo__35BCFE0A">
+          <End Role="Customers" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Transactions" Type="Self.Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="Customer_ID" />
+            </Principal>
+            <Dependent Role="Transactions">
+              <PropertyRef Name="Customer_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CRI_ON_EMPLOYEECONTACTNOS_FK_EMPLOYEE_ID">
+          <End Role="Employees" Type="Self.Employee" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Employees_Contact_No_s" Type="Self.Employees_Contact_No_s" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Employee_ID" />
+            </Principal>
+            <Dependent Role="Employees_Contact_No_s">
+              <PropertyRef Name="Employee_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CRI_ON_TRANSACTIONS_FK_EMPLOYEE_ID">
+          <End Role="Employees" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Transactions" Type="Self.Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Employee_ID" />
+            </Principal>
+            <Dependent Role="Transactions">
+              <PropertyRef Name="Employee_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employees__Emplo__31EC6D26">
+          <End Role="Employees" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Employees_Contact_No_s" Type="Self.Employees_Contact_No_s" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Employee_ID" />
+            </Principal>
+            <Dependent Role="Employees_Contact_No_s">
+              <PropertyRef Name="Employee_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Transacti__Emplo__36B12243">
+          <End Role="Employees" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Transactions" Type="Self.Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Employee_ID" />
+            </Principal>
+            <Dependent Role="Transactions">
+              <PropertyRef Name="Employee_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Payments__Transa__4222D4EF">
+          <End Role="Transactions" Type="Self.Transaction" Multiplicity="0..1" />
+          <End Role="Payments" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transactions">
+              <PropertyRef Name="Transaction_ID" />
+            </Principal>
+            <Dependent Role="Payments">
+              <PropertyRef Name="Transaction_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CRI_ON_RESERVATIONS_FK_TRANSACTION_ID">
+          <End Role="Transactions" Type="Self.Transaction" Multiplicity="0..1" />
+          <End Role="Reservations" Type="Self.Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transactions">
+              <PropertyRef Name="Transaction_ID" />
+            </Principal>
+            <Dependent Role="Reservations">
+              <PropertyRef Name="Transaction_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CRI_ON_ROOMS_FK_RESERVATION_ID">
+          <End Role="Reservations" Type="Self.Reservation" Multiplicity="0..1" />
+          <End Role="Rooms" Type="Self.Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reservations">
+              <PropertyRef Name="Reservation_ID" />
+            </Principal>
+            <Dependent Role="Rooms">
+              <PropertyRef Name="Reservation_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reservati__Trans__398D8EEE">
+          <End Role="Transactions" Type="Self.Transaction" Multiplicity="0..1" />
+          <End Role="Reservations" Type="Self.Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transactions">
+              <PropertyRef Name="Transaction_ID" />
+            </Principal>
+            <Dependent Role="Reservations">
+              <PropertyRef Name="Transaction_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Rooms__Reservati__3E52440B">
+          <End Role="Reservations" Type="Self.Reservation" Multiplicity="0..1" />
+          <End Role="Rooms" Type="Self.Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reservations">
+              <PropertyRef Name="Reservation_ID" />
+            </Principal>
+            <Dependent Role="Rooms">
+              <PropertyRef Name="Reservation_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Hotel_Management_SystemEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="Customer_s_Phone_No_s" EntityType="Self.Customer_s_Phone_No_s" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="Employees_Contact_No_s" EntityType="Self.Employees_Contact_No_s" />
+          <EntitySet Name="Payments" EntityType="Self.Payment" />
+          <EntitySet Name="Reservations" EntityType="Self.Reservation" />
+          <EntitySet Name="Reviews" EntityType="Self.Review" />
+          <EntitySet Name="Rooms" EntityType="Self.Room" />
+          <EntitySet Name="Transactions" EntityType="Self.Transaction" />
+          <EntitySet Name="CUSTOMERS_VIEWs" EntityType="Self.CUSTOMERS_VIEW" />
+          <EntitySet Name="EMPLOYEES_VIEWs" EntityType="Self.EMPLOYEES_VIEW" />
+          <EntitySet Name="RESERVATIONS_VIEWs" EntityType="Self.RESERVATIONS_VIEW" />
+          <EntitySet Name="TRANSACTIONS_VIEWs" EntityType="Self.TRANSACTIONS_VIEW" />
+          <AssociationSet Name="CRI_FK_customer_id" Association="Self.CRI_FK_customer_id">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Customer_s_Phone_No_s" EntitySet="Customer_s_Phone_No_s" />
+          </AssociationSet>
+          <AssociationSet Name="CRI_ON_PAYMENTS_FK_CUSTOMER_ID" Association="Self.CRI_ON_PAYMENTS_FK_CUSTOMER_ID">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Payments" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="CRI_ON_RESERVATIONS_FK_CUSTOMER_ID" Association="Self.CRI_ON_RESERVATIONS_FK_CUSTOMER_ID">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Reservations" EntitySet="Reservations" />
+          </AssociationSet>
+          <AssociationSet Name="CRI_ON_REVIEWS_FK_CUSTOMER_ID" Association="Self.CRI_ON_REVIEWS_FK_CUSTOMER_ID">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Reviews" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="CRI_ON_TRANSACTIONS_FK_CUSTOMER_ID" Association="Self.CRI_ON_TRANSACTIONS_FK_CUSTOMER_ID">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Transactions" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Customer___Custo__276EDEB3" Association="Self.FK__Customer___Custo__276EDEB3">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Customer_s_Phone_No_s" EntitySet="Customer_s_Phone_No_s" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Payments__Custom__412EB0B6" Association="Self.FK__Payments__Custom__412EB0B6">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Payments" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reservati__Custo__3A81B327" Association="Self.FK__Reservati__Custo__3A81B327">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Reservations" EntitySet="Reservations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reviews__Custome__2B3F6F97" Association="Self.FK__Reviews__Custome__2B3F6F97">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Reviews" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Transacti__Custo__35BCFE0A" Association="Self.FK__Transacti__Custo__35BCFE0A">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Transactions" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="CRI_ON_EMPLOYEECONTACTNOS_FK_EMPLOYEE_ID" Association="Self.CRI_ON_EMPLOYEECONTACTNOS_FK_EMPLOYEE_ID">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Employees_Contact_No_s" EntitySet="Employees_Contact_No_s" />
+          </AssociationSet>
+          <AssociationSet Name="CRI_ON_TRANSACTIONS_FK_EMPLOYEE_ID" Association="Self.CRI_ON_TRANSACTIONS_FK_EMPLOYEE_ID">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Transactions" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employees__Emplo__31EC6D26" Association="Self.FK__Employees__Emplo__31EC6D26">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Employees_Contact_No_s" EntitySet="Employees_Contact_No_s" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Transacti__Emplo__36B12243" Association="Self.FK__Transacti__Emplo__36B12243">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Transactions" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Payments__Transa__4222D4EF" Association="Self.FK__Payments__Transa__4222D4EF">
+            <End Role="Transactions" EntitySet="Transactions" />
+            <End Role="Payments" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="CRI_ON_RESERVATIONS_FK_TRANSACTION_ID" Association="Self.CRI_ON_RESERVATIONS_FK_TRANSACTION_ID">
+            <End Role="Transactions" EntitySet="Transactions" />
+            <End Role="Reservations" EntitySet="Reservations" />
+          </AssociationSet>
+          <AssociationSet Name="CRI_ON_ROOMS_FK_RESERVATION_ID" Association="Self.CRI_ON_ROOMS_FK_RESERVATION_ID">
+            <End Role="Reservations" EntitySet="Reservations" />
+            <End Role="Rooms" EntitySet="Rooms" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reservati__Trans__398D8EEE" Association="Self.FK__Reservati__Trans__398D8EEE">
+            <End Role="Transactions" EntitySet="Transactions" />
+            <End Role="Reservations" EntitySet="Reservations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Rooms__Reservati__3E52440B" Association="Self.FK__Rooms__Reservati__3E52440B">
+            <End Role="Reservations" EntitySet="Reservations" />
+            <End Role="Rooms" EntitySet="Rooms" />
+          </AssociationSet>
+          <FunctionImport Name="sp_IOS">
+            <Parameter Name="Transaction_ID" Mode="In" Type="Int32" />
+            <Parameter Name="Customer_ID" Mode="In" Type="Int32" />
+            <Parameter Name="Date_In" Mode="In" Type="DateTime" />
+            <Parameter Name="Date_Out" Mode="In" Type="DateTime" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Hotel_Management_SystemEntities">
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="Model.Customer">
+              <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Customer_ID" ColumnName="Customer ID" />
+                <ScalarProperty Name="Customer_First_name" ColumnName="Customer First name" />
+                <ScalarProperty Name="Customer_Last_name" ColumnName="Customer Last name" />
+                <ScalarProperty Name="Customer_Email_Address" ColumnName="Customer Email-Address" />
+                <ScalarProperty Name="Customer_Address" ColumnName="Customer Address" />
+                <ScalarProperty Name="No__of_Peoples" ColumnName="No. of Peoples" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customer_s_Phone_No_s">
+            <EntityTypeMapping TypeName="Model.Customer_s_Phone_No_s">
+              <MappingFragment StoreEntitySet="Customer's Phone No_s">
+                <ScalarProperty Name="CPID" ColumnName="CPID" />
+                <ScalarProperty Name="Customer_ID" ColumnName="Customer ID" />
+                <ScalarProperty Name="Customer_Phone_No_s" ColumnName="Customer Phone No.s" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="Model.Employee">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="Employee_ID" ColumnName="Employee ID" />
+                <ScalarProperty Name="Employee_First_Name" ColumnName="Employee First Name" />
+                <ScalarProperty Name="Employee_Last_Name" ColumnName="Employee Last Name" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Employee_Department" ColumnName="Employee Department" />
+                <ScalarProperty Name="Employee_Address" ColumnName="Employee Address" />
+                <ScalarProperty Name="Employee_Salary" ColumnName="Employee Salary" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees_Contact_No_s">
+            <EntityTypeMapping TypeName="Model.Employees_Contact_No_s">
+              <MappingFragment StoreEntitySet="Employees Contact No_s">
+                <ScalarProperty Name="ECID" ColumnName="ECID" />
+                <ScalarProperty Name="Employee_ID" ColumnName="Employee ID" />
+                <ScalarProperty Name="Employee_Contact_No_s" ColumnName="Employee Contact No.s" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payments">
+            <EntityTypeMapping TypeName="Model.Payment">
+              <MappingFragment StoreEntitySet="Payments">
+                <ScalarProperty Name="Payment_ID" ColumnName="Payment ID" />
+                <ScalarProperty Name="Customer_ID" ColumnName="Customer ID" />
+                <ScalarProperty Name="Transaction_ID" ColumnName="Transaction ID" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Payment_Date" ColumnName="Payment Date" />
+                <ScalarProperty Name="No__of_Days_Stay" ColumnName="No. of Days Stay" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reservations">
+            <EntityTypeMapping TypeName="Model.Reservation">
+              <MappingFragment StoreEntitySet="Reservations">
+                <ScalarProperty Name="Reservation_ID" ColumnName="Reservation ID" />
+                <ScalarProperty Name="Transaction_ID" ColumnName="Transaction ID" />
+                <ScalarProperty Name="Customer_ID" ColumnName="Customer ID" />
+                <ScalarProperty Name="Date_In" ColumnName="Date In" />
+                <ScalarProperty Name="Date_Out" ColumnName="Date Out" />
+                <ScalarProperty Name="Days_Interval_of_Stay" ColumnName="Days/Interval of Stay" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reviews">
+            <EntityTypeMapping TypeName="Model.Review">
+              <MappingFragment StoreEntitySet="Reviews">
+                <ScalarProperty Name="Customer_Email_Address" ColumnName="Customer Email-Address" />
+                <ScalarProperty Name="RID" ColumnName="RID" />
+                <ScalarProperty Name="Customer_ID_Name" ColumnName="Customer ID-Name" />
+                <ScalarProperty Name="Review_Details" ColumnName="Review Details" />
+                <ScalarProperty Name="Review_Date" ColumnName="Review Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rooms">
+            <EntityTypeMapping TypeName="Model.Room">
+              <MappingFragment StoreEntitySet="Rooms">
+                <ScalarProperty Name="Room_No" ColumnName="Room No" />
+                <ScalarProperty Name="Room_Category" ColumnName="Room Category" />
+                <ScalarProperty Name="Rent" ColumnName="Rent" />
+                <ScalarProperty Name="Reservation_ID" ColumnName="Reservation ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transactions">
+            <EntityTypeMapping TypeName="Model.Transaction">
+              <MappingFragment StoreEntitySet="Transactions">
+                <ScalarProperty Name="Transaction_ID" ColumnName="Transaction ID" />
+                <ScalarProperty Name="Transaction_Name" ColumnName="Transaction Name" />
+                <ScalarProperty Name="Customer_ID" ColumnName="Customer ID" />
+                <ScalarProperty Name="Employee_ID" ColumnName="Employee ID" />
+                <ScalarProperty Name="Transaction_Date" ColumnName="Transaction Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CUSTOMERS_VIEWs">
+            <EntityTypeMapping TypeName="Model.CUSTOMERS_VIEW">
+              <MappingFragment StoreEntitySet="CUSTOMERS VIEW">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Customer_Email_Address" ColumnName="Customer Email-Address" />
+                <ScalarProperty Name="Customer_ID" ColumnName="Customer ID" />
+                <ScalarProperty Name="Customer_First_name" ColumnName="Customer First name" />
+                <ScalarProperty Name="Customer_Last_name" ColumnName="Customer Last name" />
+                <ScalarProperty Name="Customer_Address" ColumnName="Customer Address" />
+                <ScalarProperty Name="No__of_Peoples" ColumnName="No. of Peoples" />
+                <ScalarProperty Name="Customer_Phone_No_s" ColumnName="Customer Phone No.s" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMPLOYEES_VIEWs">
+            <EntityTypeMapping TypeName="Model.EMPLOYEES_VIEW">
+              <MappingFragment StoreEntitySet="EMPLOYEES VIEW">
+                <ScalarProperty Name="Employee_ID" ColumnName="Employee ID" />
+                <ScalarProperty Name="Employee_First_name" ColumnName="Employee First name" />
+                <ScalarProperty Name="Employee_Last_name" ColumnName="Employee Last name" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Employee_Department" ColumnName="Employee Department" />
+                <ScalarProperty Name="Employee_Address" ColumnName="Employee Address" />
+                <ScalarProperty Name="Employee_Salary" ColumnName="Employee Salary" />
+                <ScalarProperty Name="Employee_Contact_No_s" ColumnName="Employee Contact No.s" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RESERVATIONS_VIEWs">
+            <EntityTypeMapping TypeName="Model.RESERVATIONS_VIEW">
+              <MappingFragment StoreEntitySet="RESERVATIONS VIEW">
+                <ScalarProperty Name="Reservation_ID" ColumnName="Reservation ID" />
+                <ScalarProperty Name="Transaction_ID" ColumnName="Transaction ID" />
+                <ScalarProperty Name="Customer_ID" ColumnName="Customer ID" />
+                <ScalarProperty Name="Date_In" ColumnName="Date In" />
+                <ScalarProperty Name="Date_Out" ColumnName="Date Out" />
+                <ScalarProperty Name="Days_Interval_of_Stay" ColumnName="Days/Interval of Stay" />
+                <ScalarProperty Name="Room_No" ColumnName="Room No" />
+                <ScalarProperty Name="Room_Category" ColumnName="Room Category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRANSACTIONS_VIEWs">
+            <EntityTypeMapping TypeName="Model.TRANSACTIONS_VIEW">
+              <MappingFragment StoreEntitySet="TRANSACTIONS VIEW">
+                <ScalarProperty Name="Transaction_ID" ColumnName="Transaction ID" />
+                <ScalarProperty Name="Transaction_Name" ColumnName="Transaction Name" />
+                <ScalarProperty Name="Transaction_Date" ColumnName="Transaction Date" />
+                <ScalarProperty Name="Employee_ID" ColumnName="Employee ID" />
+                <ScalarProperty Name="Customer_ID" ColumnName="Customer ID" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="No__of_Days_Stay" ColumnName="No. of Days Stay" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_IOS" FunctionName="Model.Store.sp_IOS" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

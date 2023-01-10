@@ -1,0 +1,50 @@
+﻿@model Hotel_Management_System.Models.Room
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string ActionName = GlobalVariables.VIEWSHANDLER().ToString();
+}
+
+<br />
+<div class="container">
+
+    <div>
+        <h4>Room</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Room_Category)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Room_Category)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Rent)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Rent)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Reservation.Reservation_ID)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Reservation.Reservation_ID)
+            </dd>
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Room_No }, new { @class = "btn btn-warning" })
+        <br />
+        <br />
+        @Html.ActionLink("Back to List", ActionName, new { area = "" }, new { @class = "btn btn-primary" })
+        <br />
+        <br />
+        @Html.ActionLink("Back-to-Main-Customers-List", ActionName, "CUSTOMERS_VIEW", new { area = "" }, new { @class = "btn btn-primary" })
+    </p>
+</div>

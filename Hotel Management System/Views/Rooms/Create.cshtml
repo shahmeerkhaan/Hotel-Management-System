@@ -1,0 +1,159 @@
+﻿@model Hotel_Management_System.Models.Room
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string ActionName = GlobalVariables.VIEWSHANDLER().ToString();
+    Hotel_Management_System.Models.Hotel_Management_SystemEntities db = new Hotel_Management_System.Models.Hotel_Management_SystemEntities();
+    var Models = db.Rooms.Where(RID => GlobalVariables.ReservationID == RID.Reservation_ID);
+}
+
+<br />
+<div class="container">
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @*@Html.Raw()*@
+        <div class="form-horizontal">
+            <h4>Room</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @if(GlobalVariables.LOGINAUTHENTICATION() && !GlobalVariables.IsValidCustomerUser && GlobalVariables.IsValidUser || GlobalVariables.IsAdmin)
+             {
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Room_No, "Room_No", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("Room_No", null, htmlAttributes: new { @class = "form-control select2" })
+                        @Html.ValidationMessageFor(model => model.Reservation_ID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+             }
+            else if (GlobalVariables.LOGINAUTHENTICATION() && GlobalVariables.IsValidCustomerUser && !GlobalVariables.IsValidUser)
+            {
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Reservation_ID, "Reservation_ID", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBox("Reservation_ID", (object)GlobalVariables.ReservationID, htmlAttributes: new { @class = "form-control", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(model => model.Reservation_ID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Reservation_ID, "Reservation_ID", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("Reservation_ID", null, htmlAttributes: new { @class = "form-control select2" })
+                        @Html.ValidationMessageFor(model => model.Reservation_ID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            }
+            <div class="form-group">
+                @Html.LabelFor(model => model.Room_Category, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.Room_Category, new SelectList(Enum.GetValues(typeof(Hotel_Management_System.Controllers.Room_Category))), "Select ↓", htmlAttributes: new { @class = "form-control select2", @id = "RoomData" })
+                    @Html.ValidationMessageFor(model => model.Room_Category, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            
+            <div class="form-group">
+                @Html.Label("No_of_Rooms", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-offset-2 col-md-10">
+                    <input type ="text" class="form-control" id="NoofRooms" />
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    @*@Html.ActionLink("Confirm-Data", "ConfirmData", "Reservations", new { area = "" }, new { @class = "btn btn-primary", @onclick = "ConfirmDate()" })*@
+                    <input type="button" value="Confirm-Data" onclick="Choosee()" class="btn btn-primary" />
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                @Html.LabelFor(model => model.Rent, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Rent, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id = "Rent" } })
+                    @Html.ValidationMessageFor(model => model.Rent, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <br />
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Confirm" onclick="" class="btn btn-success" />
+                </div>
+            </div>
+            <br />
+            <div class="table-responsive">
+                <table id="myTable" class="table table-dark table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Room_Category)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Rent)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Reservation.Customer.Customer_First_name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Reservation.Reservation_ID)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Reservation.Date_In)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Reservation.Date_Out)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Reservation.Days_Interval_of_Stay)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Models)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Room_Category)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Rent)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Reservation.Customer.Customer_First_name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Reservation.Reservation_ID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Reservation.Date_In)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Reservation.Date_Out)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Reservation.Days_Interval_of_Stay)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.Room_No }, new { @class = "btn btn-primary mr-1" })
+                                    @Html.ActionLink("Details", "Details", new { id = item.Room_No }, new { @class = "btn btn-warning mr-1" })
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.Room_No }, new { @class = "btn btn-danger mr-1" })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <br />
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    @Html.ActionLink("Confirm-Booking", "Index", "Home", new { area = "" }, new { @class = "btn btn-success" })
+                </div>
+            </div>
+        </div>
+    }
+</div>

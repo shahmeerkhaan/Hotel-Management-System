@@ -1,0 +1,83 @@
+﻿@model Hotel_Management_System.Models.Reservation
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string ActionName = GlobalVariables.VIEWSHANDLER().ToString();
+}
+
+<br />
+<div class="container">
+
+    <div>
+        <h4>Reservation</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Date_In)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Date_In)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Date_Out)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Date_Out)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Days_Interval_of_Stay)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Days_Interval_of_Stay)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Customer.Customer_First_name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Customer.Customer_First_name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Customer1.Customer_First_name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Customer1.Customer_First_name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Transaction.Transaction_Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Transaction.Transaction_Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Transaction1.Transaction_Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Transaction1.Transaction_Name)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @*@Html.ActionLink("Edit", "Edit", new { id = Model.Customer_ID }, new { @class = "btn btn-warning" })
+        <br />
+        <br />*@
+        @Html.ActionLink("Back to List", ActionName, "Reservations", new { area = "" }, new { @class = "btn btn-primary" })
+        <br />
+        <br />
+        @Html.ActionLink("Back-to-Main-Customers-List", ActionName, "CUSTOMERS_VIEW", new { area = "" }, new { @class = "btn btn-primary" })
+    </p>
+</div>

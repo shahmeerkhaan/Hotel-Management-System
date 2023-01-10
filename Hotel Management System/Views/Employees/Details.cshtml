@@ -1,0 +1,87 @@
+﻿@model Hotel_Management_System.Models.Employee
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string ActionName = GlobalVariables.VIEWSHANDLER().ToString();
+}
+
+<br />
+<div class="container">
+    <div class="row">
+        @*<p>
+            @Html.ActionLink("Logout", "Logout", "Home", new { area = "" }, new { @class = "btn btn-danger mr-1" })
+        </p>*@
+        <h4>
+            Employee
+        </h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Employee_First_Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Employee_First_Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Employee_Last_Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Employee_Last_Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Username)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Username)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Password)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Password)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Employee_Department)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Employee_Department)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Employee_Address)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Employee_Address)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Employee_Salary)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Employee_Salary)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Employee_ID }, new { @class = "btn btn-warning" })
+        <br />
+        <br />
+        @Html.ActionLink("Back to List", ActionName, new { area = "" }, new { @class = "btn btn-primary" })
+        <br />
+        <br />
+        @Html.ActionLink("Back-to-Main-Employees-List", ActionName, "EMPLOYEES_VIEW", new { area = "" }, new { @class = "btn btn-primary" })
+    </p>
+</div>

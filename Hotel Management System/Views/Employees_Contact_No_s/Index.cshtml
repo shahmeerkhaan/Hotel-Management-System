@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Hotel_Management_System.Models.Employees_Contact_No_s>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string ActionName = GlobalVariables.VIEWSHANDLER().ToString();
+}
+
+<br />
+<div class="container container-fluid">
+    <div class="row">
+        @*<p>
+            @Html.ActionLink("Logout", "Logout", "Home", new { area = "" }, new { @class = "btn btn-danger mr-1" })
+        </p>
+        <p>
+            @Html.ActionLink("Update Employees", ActionName, "Employees", new { area = "" }, new { @class = "btn btn-success mr-1" })
+        </p>*@
+        <p>
+            @Html.ActionLink("Add Employee's Contacts", "Create", "Employees_Contact_No_s", new { @class = "btn btn-success mr-1" })
+        </p>
+        <div class="container search-table">
+            <div class="search-box">
+                <div class="row">
+                    <div class="col-md-6">
+                        <center>
+                            <h5 style="margin-top: 8px;">Search All Fields of Table's Data:</h5>
+                        </center>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" id="myInput" onkeyup="myFunction()" class="form-control" placeholder="Search all fields of table's data">
+                        <script>
+                            $(document).ready(function () {
+                                $("#myInput").on("keyup", function () {
+                                    var value = $(this).val().toLowerCase();
+                                    $("#myTable tr").filter(function () {
+                                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                                    });
+                                });
+                            });
+                        </script>
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table id="myTable" class="table table-dark table-striped table-bordered">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Employee_Contact_No_s)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Employee.Employee_First_Name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Employee.Employee_Last_Name)
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Employee_Contact_No_s)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Employee.Employee_First_Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Employee.Employee_Last_Name)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.ECID }, new { @class = "btn btn-primary mr-1" })
+                                @Html.ActionLink("Details", "Details", new { id = item.ECID }, new { @class = "btn btn-warning mr-1" })
+                                @Html.ActionLink("Delete", "Delete", new { id = item.ECID }, new { @class = "btn btn-danger mr-1" })
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+            <br />
+            <p>
+                @Html.ActionLink("Back-to-Main-Employees-List", ActionName, "EMPLOYEES_VIEW", new { area = "" }, new { @class = "btn btn-primary" })
+            </p>
+        </div>
+    </div>
+</div>

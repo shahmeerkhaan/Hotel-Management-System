@@ -1,0 +1,54 @@
+﻿@model Hotel_Management_System.Models.Customer_s_Phone_No_s
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string ActionName = GlobalVariables.VIEWSHANDLER().ToString();
+}
+
+<br />
+<div class="container">
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Customer_s_Phone_No_s</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.CPID)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Customer_ID, "Customer_ID", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("Customer_ID", null, htmlAttributes: new { @class = "form-control select2" })
+                    @Html.ValidationMessageFor(model => model.Customer_ID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Customer_Phone_No_s, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Customer_Phone_No_s, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Customer_Phone_No_s, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <br />
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-warning" />
+                </div>
+            </div>
+            <br />
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", ActionName, new { area = "" }, new { @class = "btn btn-primary" })
+        <br />
+        <br />
+        @Html.ActionLink("Back-to-Main-Customers-List", ActionName, "CUSTOMERS_VIEW", new { area = "" }, new { @class = "btn btn-primary" })
+    </div>
+</div>

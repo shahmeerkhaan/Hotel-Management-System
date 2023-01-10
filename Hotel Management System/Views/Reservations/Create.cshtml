@@ -1,0 +1,103 @@
+﻿@model Hotel_Management_System.Models.Reservation
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string ActionName = GlobalVariables.VIEWSHANDLER().ToString();
+}
+<br />
+
+<div class="container">
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Reserve your Room by filling the form up here:</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @if (GlobalVariables.LOGINAUTHENTICATION() && GlobalVariables.IsValidCustomerUser && !GlobalVariables.IsValidUser)
+            {
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Customer_ID, "Customer_ID", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBox("Customer_ID", (object)GlobalVariables.CustomerID, htmlAttributes: new { @class = "form-control", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(model => model.Customer_ID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Customer.Customer_First_name, "Customer_Name", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBox(GlobalVariables.CustomerName, (object)GlobalVariables.CustomerName, htmlAttributes: new { @class = "form-control", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(model => model.Customer_ID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Customer.Customer_Email_Address, "Customer_Name", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBox(GlobalVariables.CustomerEmail, (object)GlobalVariables.CustomerEmail, htmlAttributes: new { @class = "form-control", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(model => model.Customer_ID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Customer_ID, "Customer_ID", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("Customer_ID", null, htmlAttributes: new { @class = "form-control select2" })
+                        @Html.ValidationMessageFor(model => model.Customer_ID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            }
+            <div class="form-group">
+                @Html.LabelFor(model => model.Date_In, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Date_In, new { htmlAttributes = new { @class = "form-control", @id = "DateIn" } })
+                    @Html.ValidationMessageFor(model => model.Date_In, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Date_Out, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Date_Out, new { htmlAttributes = new { @class = "form-control", @id = "DateOut" } })
+                    @Html.ValidationMessageFor(model => model.Date_Out, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    @*@Html.ActionLink("Confirm-Data", "ConfirmData", "Reservations", new { area = "" }, new { @class = "btn btn-primary", @onclick = "ConfirmDate()" })*@
+                    <input type="button" value="Confirm-Data" onclick="ConfirmDate()" class="btn btn-primary" />
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                @Html.LabelFor(model => model.Days_Interval_of_Stay, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input readonly="readonly" class="form-control" id="DOI" />
+                </div>
+            </div>
+            <br />
+            @if (GlobalVariables.LOGINAUTHENTICATION() && GlobalVariables.IsValidUser)
+            {
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Transaction_ID, "Transaction_ID", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("Transaction_ID", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Transaction_ID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            }
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Confirm" class="btn btn-success" />
+                </div>
+            </div>
+        </div>
+    }
+</div>

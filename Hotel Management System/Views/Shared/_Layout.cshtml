@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="icon" type="image/x-icon" href="~/Content/icons/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="~/Content/css/styles.css" rel="stylesheet" />
+    <link href="~/Content/css/themify-icons.css" rel="stylesheet" />
+    @*<link href="~/Content/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>*@
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Content/js/jquery.min.js"></script>
+    <link href="~/Content/bootstrap-select.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-select.min.css" rel="stylesheet" />
+    <script src="~/Content/js/bootstrap-select.js"></script>
+    <link href="~/Content/select2.min.css" rel="stylesheet" />
+    <script src="~/Content/js/select2.min.js"></script>
+    <title>DAYS INN HOTEL</title>
+</head>
+@{
+    string ActionName = GlobalVariables.VIEWSHANDLER().ToString();
+}
+<body id="page-top">
+    <!-- Navigation-->
+    @if (Hotel_Management_System.GlobalVariables.SurfingMode != false || Hotel_Management_System.GlobalVariables.LOGINAUTHENTICATION() == true)
+    {
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+            <div class="container px-4">
+                <center>
+                    <a href="#page-top">@Html.ActionLink("DAYS INN HOTEL", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" }))</a>
+                </center>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a href="#Home">@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</a></li>
+                        <li class="nav-item"><a href="#About">@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</a></li>
+                        <li class="nav-item"><a href="#contact">@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</a></li>
+                        @if (Hotel_Management_System.GlobalVariables.LOGINAUTHENTICATION() == true && Hotel_Management_System.GlobalVariables.IsAdmin == true)
+                        {
+                            <li class="nav-item"><a href="#contact">@Html.ActionLink("Manage-Employees", ActionName, "EMPLOYEES_VIEW", new { area = "" }, new { @class = "nav-link" })</a></li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" onclick="Slider()" href="#" id="drop5" data-toggle="dropdown" role="button">
+                                </a>
+                                <ul class="bg-dark dropdown-menu" id="drop5" role="menu">
+                                    <li>@Html.ActionLink("Employees", ActionName, "Employees", new { area = "" }, new { @class = "nav-link bg-dark dropdown-item" })</li>
+                                    <li>@Html.ActionLink("Employees's Phone No.", ActionName, "Employees_Contact_No_s", new { area = "" }, new { @class = "nav-link bg-dark dropdown-item" })</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item"><a href="#contact">@Html.ActionLink("Manage-Customers", ActionName, "CUSTOMERS_VIEW", new { area = "" }, new { @class = "nav-link" })</a></li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" onclick="Slider()" href="#" id="drop5" data-toggle="dropdown" role="button">
+                                </a>
+                                <ul class="bg-dark dropdown-menu" id="drop5" role="menu">
+                                    <li>@Html.ActionLink("Customers", ActionName, "Customers", new { area = "" }, new { @class = "nav-link bg-dark dropdown-item" })</li>
+                                    <li>@Html.ActionLink("Customer's Phone No.", ActionName, "Customer_s_Phone_No_s", new { area = "" }, new { @class = "nav-link bg-dark dropdown-item" })</li>
+                                    <li>@Html.ActionLink("Customer's Reservations", ActionName, "Reservations", new { area = "" }, new { @class = "nav-link bg-dark dropdown-item" })</li>
+                                    <li>@Html.ActionLink("Rooms", ActionName, "Rooms", new { area = "" }, new { @class = "nav-link bg-dark dropdown-item" })</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item"><a href="#contact">@Html.ActionLink("Logout", "Logout", "Home", new { area = "" }, new { @class = "nav-link" })</a></li>
+                        }
+                        else if (Hotel_Management_System.GlobalVariables.LOGINAUTHENTICATION() == true && Hotel_Management_System.GlobalVariables.IsAdmin != true
+                            && !GlobalVariables.IsValidCustomerUser && !GlobalVariables.IsValidCustomerPassword)
+                        {
+                            <li class="nav-item"><a href="#contact">@Html.ActionLink("Manage-Customers", ActionName, "CUSTOMERS_VIEW", new { area = "" }, new { @class = "nav-link" })</a></li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" onclick="Slider()" href="#" id="drop5" data-toggle="dropdown" role="button">
+                                </a>
+                                <ul class="bg-dark dropdown-menu" id="drop5" role="menu">
+                                    <li>@Html.ActionLink("Customers", ActionName, "Customers", new { area = "" }, new { @class = "nav-link bg-dark dropdown-item" })</li>
+                                    <li>@Html.ActionLink("Customer's Phone No.", ActionName, "Customer_s_Phone_No_s", new { area = "" }, new { @class = "nav-link bg-dark dropdown-item" })</li>
+                                    <li>@Html.ActionLink("Customer's Reservations", ActionName, "Reservations", new { area = "" }, new { @class = "nav-link bg-dark dropdown-item" })</li>
+                                    <li>@Html.ActionLink("Rooms", ActionName, "Rooms", new { area = "" }, new { @class = "nav-link bg-dark dropdown-item" })</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item"><a href="#contact">@Html.ActionLink("Logout", "Logout", "Home", new { area = "" }, new { @class = "nav-link" })</a></li>
+                        }
+                        else if (Hotel_Management_System.GlobalVariables.LOGINAUTHENTICATION() == true && GlobalVariables.IsValidCustomerUser && GlobalVariables.IsValidCustomerPassword)
+                        {
+                            <li class="nav-item"><a href="#contact">@Html.ActionLink("Logout", "Logout", "Home", new { area = "" }, new { @class = "nav-link" })</a></li>
+                        }
+                        else
+                        {
+                            <li class="nav-item"><a href="#">@Html.ActionLink("Login", "Login", "Home", new { area = "" }, new { @class = "nav-link" })</a></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    }
+    else
+    {
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+            <div class="container px-4">
+               @Html.ActionLink("DAYS INN HOTEL", "Login", "Home", new { area = "" }, new { @class = "navbar-brand mx-auto" })
+            </div>
+        </nav>
+    }
+    <br />
+    <br />
+    <div class="body-content">
+        @RenderBody()
+    </div>
+    <br />
+    <!-- Footer-->
+    <footer class="py-5 bg-dark">
+        <div class="container px-4"><p class="m-0 text-center text-white">Copyright &copy; DAYS INN HOTEL</p></div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="~/Content/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="~/Content/js/scripts.js"></script>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

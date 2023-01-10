@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9ca5085ca6c444248aa4ee62be25b93c" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.Customer" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Customer_s_Phone_No_s" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Employee" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Employees_Contact_No_s" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Payment" Width="1.5" PointX="3" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Reservation" Width="1.5" PointX="6" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Review" Width="1.5" PointX="3" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Room" Width="1.5" PointX="8.25" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Transaction" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CUSTOMERS_VIEW" Width="1.5" PointX="5.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.EMPLOYEES_VIEW" Width="1.5" PointX="5.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.RESERVATIONS_VIEW" Width="1.5" PointX="7.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TRANSACTIONS_VIEW" Width="1.5" PointX="7.75" PointY="5.5" IsExpanded="true" />
+        <AssociationConnector Association="Model.CRI_FK_customer_id" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.CRI_ON_PAYMENTS_FK_CUSTOMER_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.CRI_ON_RESERVATIONS_FK_CUSTOMER_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.CRI_ON_REVIEWS_FK_CUSTOMER_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.CRI_ON_TRANSACTIONS_FK_CUSTOMER_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Customer___Custo__276EDEB3" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Payments__Custom__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Reservati__Custo__3A81B327" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Reviews__Custome__2B3F6F97" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Transacti__Custo__35BCFE0A" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.CRI_ON_EMPLOYEECONTACTNOS_FK_EMPLOYEE_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.CRI_ON_TRANSACTIONS_FK_EMPLOYEE_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Employees__Emplo__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Transacti__Emplo__36B12243" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Payments__Transa__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.CRI_ON_RESERVATIONS_FK_TRANSACTION_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.CRI_ON_ROOMS_FK_RESERVATION_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Reservati__Trans__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Rooms__Reservati__3E52440B" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
